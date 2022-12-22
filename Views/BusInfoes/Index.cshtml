@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BusSchedule.Data.BusInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style src="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" type="text/css"></style>
+</head>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table"id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Bus Number
+            </th>
+            <th>
+                Bus Name
+            </th>
+            <th>
+                No. of Sit
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.busName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusSit)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Busid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Busid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Busid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+<script>
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+}
